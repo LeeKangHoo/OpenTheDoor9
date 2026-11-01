@@ -1,0 +1,7 @@
+# Build output
+/build/
+/output/
+/test/
+*.o
+*.d
+
